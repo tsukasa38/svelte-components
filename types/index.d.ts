@@ -1,5 +1,5 @@
-import Clock from './components/Clock';
-import Timer from './components/Timer';
-import Stopwatch from './components/Stopwatch';
+import ClockCore from './components/ClockCore';
+import TimerCore from './components/TimerCore';
+import StopwatchCore from './components/StopwatchCore';
 
-export { Clock, Timer, Stopwatch };
+export { ClockCore, TimerCore, StopwatchCore };
