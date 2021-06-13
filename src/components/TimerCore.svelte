@@ -18,6 +18,7 @@
         if (remaining_time >= 0) {
             last_time = time;
         } else {
+            power_on = false;
             remaining_time = 0;
             cancelAnimationFrame(frame);
         }

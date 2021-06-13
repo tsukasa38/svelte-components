@@ -438,12 +438,13 @@
     	function runTimer() {
     		frame = requestAnimationFrame(runTimer);
     		const time = window.performance.now();
-    		$$invalidate(0, remaining_time -= time - last_time);
+    		$$invalidate(1, remaining_time -= time - last_time);
 
     		if (remaining_time >= 0) {
     			last_time = time;
     		} else {
-    			$$invalidate(0, remaining_time = 0);
+    			$$invalidate(0, power_on = false);
+    			$$invalidate(1, remaining_time = 0);
     			cancelAnimationFrame(frame);
     		}
     	}
@@ -466,24 +467,24 @@
     	});
 
     	$$self.$$set = $$props => {
-    		if ("power_on" in $$props) $$invalidate(1, power_on = $$props.power_on);
-    		if ("remaining_time" in $$props) $$invalidate(0, remaining_time = $$props.remaining_time);
+    		if ("power_on" in $$props) $$invalidate(0, power_on = $$props.power_on);
+    		if ("remaining_time" in $$props) $$invalidate(1, remaining_time = $$props.remaining_time);
     		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*power_on*/ 2) {
+    		if ($$self.$$.dirty & /*power_on*/ 1) {
     			active = power_on ? startTimer() : stopTimer();
     		}
     	};
 
-    	return [remaining_time, power_on, $$scope, slots];
+    	return [power_on, remaining_time, $$scope, slots];
     }
 
     class TimerCore extends SvelteComponent {
     	constructor(options) {
     		super();
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { power_on: 1, remaining_time: 0 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { power_on: 0, remaining_time: 1 });
     	}
     }
 
