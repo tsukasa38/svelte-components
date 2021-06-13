@@ -4,8 +4,8 @@
 	let frame: number;
 	let active: boolean;
 
-	export let current_time: number = 0;
-	export let power_on: boolean = false;
+	export let current_time: number;
+	export let power_on: boolean = true;
 
     const start_time: number = window.performance.timeOrigin;
 

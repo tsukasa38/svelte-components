@@ -340,8 +340,8 @@
     	let { $$slots: slots = {}, $$scope } = $$props;
     	let frame;
     	let active;
-    	let { current_time = 0 } = $$props;
-    	let { power_on = false } = $$props;
+    	let { current_time } = $$props;
+    	let { power_on = true } = $$props;
     	const start_time = window.performance.timeOrigin;
 
     	function runClock() {
