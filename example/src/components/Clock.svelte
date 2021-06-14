@@ -49,7 +49,6 @@
         border-radius: 1rem;
         border: 4px solid #ff4400;
         background-color: #ffffff;
-        text-shadow: 1px 1px rgb(0 0 0 / 40%);
     }
     .title {
         top: 0;
@@ -63,6 +62,7 @@
         position: absolute;
         color: #ffffff;
         background-color: #ff4400;
+        text-shadow: 1px 1px rgb(0 0 0 / 40%);
     }
     .power_on.container {
         border-color: #44ff00;
