@@ -24,7 +24,8 @@ export default {
     ],
     plugins: [
         svelte({
-            preprocess: autoPreprocess()
+            preprocess: autoPreprocess(),
+            emitCss: false
         }),
         resolve(),
         commonjs(),
