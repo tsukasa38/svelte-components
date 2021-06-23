@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { StopwatchCore } from "../../..";
+    import StopwatchCore from "./StopwatchCore.svelte";
     import Button from "./Button.svelte";
 
     let time: number = 0;

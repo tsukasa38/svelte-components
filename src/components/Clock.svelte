@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { TimerCore } from "../../..";
+    import ClockCore from "./ClockCore.svelte";
     import Button from "./Button.svelte";
 
-    let time: number = 10000;
-    let power_on: boolean = false;
+    let time: number;
+    let power_on: boolean;
 
-    //$: display = Math.ceil(time/1000);
-    $: display = (time/1000).toFixed(2);
+    $: display = format(time);
 
     function start(): void {
         power_on = true;
@@ -16,22 +15,28 @@
         power_on = false;
     }
 
-    function reset(): void {
-        time = (Math.floor(Math.random() * 30) + 1) * 1000;
+    function format(time: number): string {
+        const now: Date = new Date(time);
+        const hours: number = now.getHours();
+        const minutes: number = now.getMinutes();
+        const seconds: number = now.getSeconds();
+        const display_hours: string = `00${hours}`.slice(-2);
+        const display_minutes: string = `00${minutes}`.slice(-2);
+        const display_seconds: string = `00${seconds}`.slice(-2);
+        return `${display_hours}:${display_minutes}:${display_seconds}`;
     }
 </script>
 
-<TimerCore bind:remaining_time={time} bind:power_on={power_on}>
-    <div class="container" class:time class:power_on>
-        <p class="title" class:time class:power_on>Timer</p>
+<ClockCore bind:current_time={time} bind:power_on={power_on}>
+    <div class="container" class:power_on>
+        <p class="title" class:power_on>Clock</p>
         <p class="number">{display}</p>
         <div class="buttonContainer">
             <Button handleClick={start}>Start</Button>
             <Button handleClick={stop}>Stop</Button>
-            <Button handleClick={reset}>Reset</Button>
         </div>
     </div>
-</TimerCore>
+</ClockCore>
 
 <style>
     .container {
@@ -58,12 +63,6 @@
         color: #ffffff;
         background-color: #ff4400;
         text-shadow: 1px 1px rgb(0 0 0 / 40%);
-    }
-    .time.container {
-        border-color: #0044ff;
-    }
-    .time.title {
-        background-color: #0044ff;
     }
     .power_on.container {
         border-color: #44ff00;
