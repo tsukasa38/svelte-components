@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Clock from './components/Clock.svelte';
-	import Timer from './components/Timer.svelte';
-	import Stopwatch from './components/Stopwatch.svelte';
+	import { Clock, Timer, Stopwatch } from '../..';
 </script>
 
 <main>
